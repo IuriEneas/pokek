@@ -1,59 +1,39 @@
-<div class="container">
-  <div class="teste">
-    <div class="button" *ngFor="let move of typeList; index as i" [ngClass]="move.name"
-         (click)="onSelectType(move)">
-      <img
-        *ngIf="move.name !== 'unknown' && move.name !== 'shadow'"
+<div class="content">
+  <div class="type-detail">
 
-        class="icon"
-        [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/'+( i + 1 )+'.png'"
-        alt="icon"></div>
 
+    <div>
+      <div class="input">
+        <label for="checkbox">Critical Hit? (-10%) </label>
+        <input type="checkbox" (change)="updateValue()" [(ngModel)]="isCritical">
+      </div>
+      <div class="input">
+        <label for="checkbox">Hit KO? (-10%) </label>
+        <input [disabled]="isLowLife" type="checkbox" (change)="updateValue()" [(ngModel)]="isHitKO">
+      </div>
+      <div class="input">
+        <label for="checkbox">Low Life? (+10%) </label>
+        <input [disabled]="isHitKO" type="checkbox" (change)="updateValue()" [(ngModel)]="isLowLife">
+      </div>
+
+      <h1>Current Chance {{ value }}%</h1>
+
+      <div class="button-container">
+        <button (click)="generateRevivalChance(-10)">Super effective (-10%)</button>
+        <button (click)="generateRevivalChance(0)">Neutral</button>
+        <button (click)="generateRevivalChance(10)">Not effective (+10%)</button>
+      </div>
+
+    </div>
 
   </div>
-
-  <aside>
-    <div class="type-detail">
-      <ng-container *ngIf="typeSelected">
-        <h1 class="base-multiplier">{{ baseMultiplier }}%</h1>
-        <h1 class="base-multiplier">{{ typeSelected.name.toUpperCase() }}</h1>
-
-        <div class="damage-type" *ngFor="let damageType of getDamagetype()">
-          <ng-container *ngIf="damageType.valor.length > 0">
-            <p>{{ damageType.chave | damageType }}</p>
-
-            <div class="item-type" *ngFor="let type of damageType.valor"
-                 [ngClass]="attackerType?.name === type.name ? 'selected' : ''"
-                 (click)="selectAttackerType(type, damageType.chave)">
-              {{ type.name }}
-            </div>
-          </ng-container>
-        </div>
-
-        <div>
-          <div class="input">
-            <label for="checkbox">Critical Hit? (-10%) </label>
-            <input type="checkbox" [(ngModel)]="isCritical">
-          </div>
-          <div class="input">
-            <label for="checkbox">Hit KO? (-10%) </label>
-            <input type="checkbox" [(ngModel)]="isHitKO">
-          </div>
-          <div class="input">
-            <label for="checkbox">Low Life? (+10%) </label>
-            <input type="checkbox" [(ngModel)]="isLowLife">
-          </div>
-
-          <button (click)="generateRevivalChance()">Generate revival chance</button>
-        </div>
-
-      </ng-container>
-    </div>
-  </aside>
 
   <div class="dialog" [ngClass]="survivedText ? 'show' : 'hide'">
     <div class="dialog-container">
       <h1 [ngClass]="survivedText? 'survived-text': 'none'"> {{ survivedText }}</h1>
+      <h4 [ngClass]="survivedText? 'survived-text': 'none'" class="flavor-text">With {{ value }}% chance</h4>
     </div>
   </div>
+
+
 </div>

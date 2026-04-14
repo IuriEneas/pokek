@@ -1,115 +1,70 @@
-.container {
+.content {
+  background-color: #f4f4f4;
   position: relative;
   display: flex;
-  flex-direction: row;
-  gap: 40px;
-  min-height: 100vh;
-}
-
-.teste {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  max-height: 100vh;
-  overflow-y: auto;
-  align-items: center;
-  justify-items: center;
-
-  & .button {
-    border-radius: 10px;
-    transition: all ease 0.3s;
-    overflow: hidden;
-
-    & .icon {
-      max-width: 100%;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-}
-
-.damage-type {
-  width: 100%;
-  gap: 10px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  font-size: 1.2rem;
-  font-weight: bold;
-
-  & .item-type {
-    padding: 5px;
-    cursor: pointer;
-    transition: all ease 0.3s;
-
-    &.selected {
-      border-radius: 8px;
-      transition: all ease 0.3s;
-      background-color: green;
-    }
-  }
-}
-
-.base-multiplier {
-  justify-self: center;
-}
-
-aside {
-  display: flex;
   flex-direction: column;
-  gap: 10px;
-  flex: 1;
-  max-height: 100vh;
-  padding: 10px;
-  background-color: greenyellow;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .survived-text {
-  font-size: 80px;
+  font-size: 60px;
   text-align: center;
-  animation: fadein 5s cubic-bezier(1, 0, 1, 0) forwards, jiggle 0.5s ease-in-out infinite alternate;
+  animation: fadein 5s cubic-bezier(1, 0, 1, 0) forwards;
+
+  &.flavor-text {
+    font-size: 20px !important;
+  }
 }
 
 @keyframes fadein {
   from {
     opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes jiggle {
-  from {
     transform: rotateZ(10deg);
   }
   to {
     transform: rotateZ(-10deg);
+    opacity: 1;
   }
 }
 
 label {
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 input {
+  font-size: 2rem;
+  border-radius: 10px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+input[ type="checkbox"] {
   height: 25px;
   aspect-ratio: 1;
+  border: 5px;
   font-size: 2rem;
-  padding: 10px;
   border-radius: 10px;
 }
 
 button {
+  flex: 1;
   cursor: pointer;
   padding: 10px;
   border: none;
   border-radius: 10px;
   font-size: 2rem;
-  background-color: #00ee19;
+  font-weight: bolder;
+  color: white;
+  background-color: #5d0202;
 }
 
 .dialog {
@@ -142,7 +97,13 @@ button {
     padding: 40px;
     width: 400px;
     border-radius: 10px;
-    height: 200px;
+    height: 300px;
     background-color: white;
   }
+}
+
+.button-container {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
 }
