@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
-import {OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {PokekService} from "./service/pokek.service";
 
 @Component({
   selector: 'app-root',
@@ -11,13 +9,9 @@ import {PokekService} from "./service/pokek.service";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
-  constructor(private pokek: PokekService) {
-  }
+export class AppComponent{
 
   survivedText: string = '';
-
-  typeList: any[] = [];
 
   baseMultiplier = 40;
   value: number = this.baseMultiplier;
@@ -25,16 +19,6 @@ export class AppComponent implements OnInit {
   isLowLife = false;
   isCritical = false;
   isHitKO = false;
-
-  ngOnInit(): void {
-    this.getData();
-  }
-
-  getData() {
-    this.pokek.fetchPokek().then(data => {
-      this.typeList = data;
-    });
-  }
 
   generateRevivalChance(multiplier: number) {
     let value = this.baseMultiplier;

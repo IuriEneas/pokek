@@ -8,6 +8,10 @@
   height: 100vh;
 }
 
+.type-detail {
+  padding: 10px;
+}
+
 .survived-text {
   font-size: 60px;
   text-align: center;
@@ -105,5 +109,6 @@ button {
 .button-container {
   margin-top: 30px;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
